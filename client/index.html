@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/client/style.css">
+    <link rel="shortcut icon" type="image" href="/client/favicon.ico"/>
+    <meta charset="utf-8" />
+    <title>Worlds Hardest Game</title>
+
+  </head>
+  <body>
+    <div class ="Title">
+      <h2 id="currentTitleMsg">Welcome To Worlds Hardest Game:</h2>
+      </div><br>
+    <div id="objectContainer" class = "Levels">
+      <!-- Store Levels as butons and when they are hit add that to your levels Array  -->
+    </div>
+    <div id="UI" class="UI">
+      <button onclick="goToPage(1)" id="create" class="start">Create Game</button><br>
+      <button onclick="goToPage(2)" id="join" class="start">Create Level</button>
+      <button onclick="createRoom()" id="createR" class="start2">Create Room</button>
+      <button onclick="leaveRoom()" id="dcBtn" class="diconnectButton">Leave Game</button>
+    </div>
+    <div id="Game" class="Game">
+      <!-- Canvas --><br>
+     <h2 id="statsTitle"> <u>Statistics:</u></h2>
+     <h4 id="stats">Total Deaths: 0 <br> Current Level Deaths: 0 <br> Course Completions: 0<br> Player:</h4>
+     <input type="color" class="col" id="col" name="col"
+           value="#c40000">
+    </div>
+    <script src="/client/sketch.js"></script>
+  </body>
+</html>
