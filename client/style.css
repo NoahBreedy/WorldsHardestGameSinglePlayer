@@ -136,8 +136,9 @@ canvas {
   top: 0;
   visibility: hidden;
 }
-
+/* On Hovers */
 #create{background-color: rgb(59, 33, 204);}
 #create:hover{ background-color: rgb(84, 78, 119);}
 #createR:hover{ background-color: rgb(122, 190, 65);}
+button.diconnectButton:hover{ background-color: rgb(255, 62, 28);}
 .start:hover {background-color: #0fee91;}

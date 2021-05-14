@@ -2,8 +2,11 @@ const socket = io();
 const Max_Levels = 10,playerSpeed=1.25;
 let AllLevels,levels,totalDeaths=0,prestiges=0,deaths=0,myQueue=[];
 /**
- * TODO: ADD DIFFERENT PLAYER COLORS 
- * TODO: ADD DEATH COUNTER FOR EACH LEVEL you are on
+ * TODO: ADD DIFFERENT PLAYER COLORS [DONE]
+ * TODO: ADD DEATH COUNTER FOR EACH LEVEL you are on [DONE]
+ * TODO: Create a check point block
+ * TODO: Finish Multiplayer (technicaly its done but i need better hosting or i guess i could convert it to an actual                                       application instead of a browser game turning into a p2p thing idk whatever i dont care)
+ * 
 */
 
 
@@ -13,6 +16,14 @@ socket.on('giveLevels',(data)=>{
    AllLevels = data;
    renderLevels(AllLevels);
 });
+
+// //Sound
+// let music;
+// function preload() {
+//   soundFormats('mp3', 'ogg');
+//   music = loadSound('music/gameNoise');
+// }
+
 
 
 //Graphics
@@ -87,7 +98,7 @@ function resetCoins(){
 }
 
 function draw() {
-  /* Weird P5 bug if I forget this */
+  /* Weird P5 bug if I forget this [March 12 2021] */
   noStroke();
   if(loaded){
     if(firstSetup){
@@ -115,25 +126,25 @@ function draw() {
 
 
 function handelKeyBoard(){
-  if(keyIsDown(38)){ //Up
+  if(keyIsDown(38) || keyIsDown(87)){ //Up
     p1.y -= playerSpeed;
     if(p1.collidesWorld() == 1){
       p1.y += playerSpeed;
     }
   }
-  if(keyIsDown(40)){//Down
+  if(keyIsDown(40) || keyIsDown(83)){//Down
     p1.y += playerSpeed;
     if(p1.collidesWorld("nextD") == 1){
       p1.y -= playerSpeed;
     }
   }
-  if(keyIsDown(39)){//Right
+  if(keyIsDown(39) || keyIsDown(68)){//Right
     p1.x += playerSpeed;
     if(p1.collidesWorld("nextR") == 1){
       p1.x -= playerSpeed;
     }
   }
-  if(keyIsDown(37)){//Left
+  if(keyIsDown(37) || keyIsDown(65)){//Left
     p1.x -= playerSpeed;
     if(p1.collidesWorld() == 1){
       p1.x += playerSpeed;
@@ -410,10 +421,11 @@ function createRoom(){
 }
 
 function leaveRoom(){
-  const question = window.prompt("Are You Sure (type yes to leave room)?");
-  if(question.toLowerCase() == "yes"){
-    window.location.reload();
-  }
+  // const question = window.prompt("Are You Sure (type yes to leave room)?");
+  // if(question.toLowerCase() == "yes"){
+  //   window.location.reload();
+  // }
+  window.location.reload();
 }
 
 function addToQueue(me,level){
