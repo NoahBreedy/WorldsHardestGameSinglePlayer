@@ -23,6 +23,10 @@ canvas {
   transform: translate(-50%, 180%);
 }
 
+#statsContainer{
+   display: none;
+}
+
 #stats{
   width: 400px;
   position: relative;

@@ -52,12 +52,14 @@ function setup() {
 }
 
 function init(){
+   document.body.style.overflow  = "hidden";
    deaths = 0;
    document.getElementById("create").style.display = "none";
    document.getElementById("join").style.display = "none";
    document.getElementById("createR").style.display = "none";
    document.getElementById('objectContainer').style.display = "none";
    document.getElementById('dcBtn').style.visibility = "visible";
+   document.getElementById('statsContainer').style.display = "block";
   loaded = false;
   deaths = 0;
   const titleMessage = `${levels[myLevel].ProjectName} <br> by: ${levels[myLevel].User}`
@@ -81,18 +83,21 @@ function init(){
     coins.push(new Coin(data.coins[i].x,data.coins[i].y));
   }
   exitCoins = data.coins.length;
+  resetCoins(true);
   firstSetup = false;
   loaded = true;
   cnv.show();
 }
 
-function resetCoins(){
+function resetCoins(initial){
   coins = [];
   for(var coin of data.coins){
     coins.push(new Coin(coin.x,coin.y));
   }
-  deaths++;
-  totalDeaths++;
+  if(initial != true){
+    deaths++;
+    totalDeaths++;
+  }
   const titleMessage = `${levels[myLevel].ProjectName} <br> by: ${levels[myLevel].User}`
   document.getElementById('stats').innerHTML = `Total Deaths: ${totalDeaths} <br> Current Level Deaths: ${deaths} <br> Course Completions: ${prestiges}<br> Player:`;
 }
@@ -314,6 +319,7 @@ function Player(x,y,col){
   this.collidesWorld = (call) =>{
     const x = int(this.x/res);
     const y = int(this.y/res);
+    //Since  RectMode is Corner
     if(call == "nextR"){
       let nX = int((this.x+10)/res);
       return grid[nX][y]
@@ -337,6 +343,7 @@ function Player(x,y,col){
   }
 }
 
+//Draws World blocks
 function drawGrid(){
   for(var i =0; i<cols;i++){
     for(var j =0;j<rows;j++){
@@ -367,7 +374,7 @@ function drawGrid(){
   }
 }
 
-//Renders the black lines or box edges
+//Renders the box edges
 function drawWalls(x,y,i,j){
         pg.stroke(0)
         const neigh = getNeighbors(i,j);
@@ -421,10 +428,12 @@ function createRoom(){
 }
 
 function leaveRoom(){
+  //This was stupid idk why I had it here.....
   // const question = window.prompt("Are You Sure (type yes to leave room)?");
   // if(question.toLowerCase() == "yes"){
   //   window.location.reload();
   // }
+
   window.location.reload();
 }
 
@@ -471,6 +480,7 @@ function renderLevels(levels){
     };
     document.getElementById('objectContainer').appendChild(button);
   });
+  
   document.getElementById("create").style.display = "none";
   document.getElementById("join").style.display = "none";
   document.getElementById("createR").style.visibility = "visible";

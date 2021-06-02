@@ -23,13 +23,17 @@
       <button onclick="createRoom()" id="createR" class="start2">Create Room</button>
       <button onclick="leaveRoom()" id="dcBtn" class="diconnectButton">Leave Game</button>
     </div>
-    <div id="Game" class="Game">
-      <!-- Canvas --><br>
+    <!-- Canvas Container-->
+    <div id="Game" class="Game"></div><br>
+
+      <!-- Stats -->
+      <div id="statsContainer">
      <h2 id="statsTitle"> <u>Statistics:</u></h2>
      <h4 id="stats">Total Deaths: 0 <br> Current Level Deaths: 0 <br> Course Completions: 0<br> Player:</h4>
      <input type="color" class="col" id="col" name="col"
            value="#c40000">
-    </div>
+      </div>
+
     <script src="/client/sketch.js"></script>
   </body>
 </html>
