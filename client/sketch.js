@@ -40,11 +40,11 @@ let pg;
 let loaded = false;
 
 function setup() {
-  //for Object
+  //For Objects
   cnv = createCanvas(600, 400);
   cnv.parent("Game");
   cnv.hide();
-  //for Map
+  //For Map
   pg = createGraphics(600, 400);
   cols = (width/res);
   rows = (height/res);
