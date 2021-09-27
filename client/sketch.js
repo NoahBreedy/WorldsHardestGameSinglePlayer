@@ -275,10 +275,16 @@ function getsingleNeighbors(grid,i,j){
 
 function getNeighbors(i,j){
   let arr = [];
-  arr.push(getsingleNeighbors(i,j-1));
+  arr.push(getsingleNeighbors(grid,i-1,j-1));
+  arr.push(getsingleNeighbors(grid,i-1,j));
+  arr.push(getsingleNeighbors(grid,i-1,j+1));
+  arr.push(getsingleNeighbors(grid,i,j-1));
+  arr.push(getsingleNeighbors(grid,i,j+1));
+  arr.push(getsingleNeighbors(grid,i+1,j-1));
+  arr.push(getsingleNeighbors(grid,i+1,j));
+  arr.push(getsingleNeighbors(grid,i+1,j+1));
   return arr;
 }
- 
 
 
 function CircleCircle(c1,c2){

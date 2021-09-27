@@ -1,28 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
+const { Client } = require('pg');
 const serv = require('http').Server(app);
 const socket = require('socket.io');
 const io = socket(serv);
 let AllLevels;
 
 
-const con = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database:process.env.DB_USER
+const client = new Client({
+    connectionString: process.env.cString
 });
-
+client.connect();
 
 app.use('/client',express.static(__dirname + '/client'));
 
 app.get('/',(req, res) => {
-  con.query(`SELECT * FROM WorldsHardestGame`,(err,result)=>{
-       AllLevels = result;
-       res.sendFile(__dirname + '/client/index.html');
-  });
+  client.query('SELECT * FROM "Blungus23/worldshardestgame"."levels";', (err, result) => {
+        AllLevels = result.rows;
+        res.sendFile(__dirname + '/client/index.html');
+  }); 
 });
 
 
